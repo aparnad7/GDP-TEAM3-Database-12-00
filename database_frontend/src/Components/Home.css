@@ -1,0 +1,19 @@
+.Container{
+    display: block;   /* Make Flex Container */
+    justify-content: center;  /* Center horizontally */
+    align-items: center;       /* Center vertically */
+    height: 100px;
+    padding: 20px;
+    margin: 50px 75px;
+    
+
+}
+
+.title{
+    text-align: center;
+    padding: 20px;
+    color: black;
+    font-style: sans-serif;
+    margin : 50px 400px;
+    
+}
