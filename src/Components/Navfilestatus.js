@@ -6,7 +6,7 @@ const Navfilestatus = ({children}) => {
     const location=useLocation()
     useEffect(()=>{
         console.log(location.pathname)
-        if((location.pathname === '/'))
+        if((location.pathname === '/')||(location.pathname === '/signin')||(location.pathname === '/signup')||(location.pathname === '/adminlogin'))
         {
             setStatus(false)
         }

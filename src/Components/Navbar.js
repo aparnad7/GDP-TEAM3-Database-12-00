@@ -40,6 +40,29 @@ const Navbar = ({isLogin,onHandleClick,isAdmin,adminClick,word,handleInputChange
     <li className='nav-item'>
         <Link className='nav-link' to='/signup'>SignUp</Link>
     </li>
+    <li class="nav-item px-20">
+     <Navfilestatus>  <a className="nav-link" href="#">AllFiles</a></Navfilestatus> 
+      </li>  
+      <li className="nav-item">
+       <Navfilestatus> <a className="nav-link ml-4" href="#">PDFFile</a></Navfilestatus>
+      </li>
+      <li className="nav-item">
+       <Navfilestatus> <a className="nav-link" href="#">TextFile</a></Navfilestatus>
+      </li>
+    
+<li className="nav-item dropdown">
+  <Navfilestatus>
+        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          SortBy
+        </a></Navfilestatus>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+    <a className="dropdown-item" href="#">Action</a>
+    <a className="dropdown-item" href="#">Another action</a>
+    <a className="dropdown-item" href="#">Something else here</a>
+  </div>
+</li>
+
+
 
   </ul>
 :
@@ -72,16 +95,16 @@ const Navbar = ({isLogin,onHandleClick,isAdmin,adminClick,word,handleInputChange
     <a className="dropdown-item" href="#">Another action</a>
     <a className="dropdown-item" href="#">Something else here</a>
   </div>
-  
+   
 </li>
     <li className='nav-item'>
         <Link onClick={logout} className='nav-link' to="signin">Logout</Link>
     </li>
     
-
+ 
   </ul>
-}
 
+}
   </div>
 
 </nav>
