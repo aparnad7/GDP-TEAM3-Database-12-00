@@ -1,3 +1,49 @@
 .nav-item{
-    float:right
+    float:right;
+    display:inline
 }
+
+#form1{
+    width: 600px;
+            padding: 10px;
+            border: 1px solid #d5d5d5;
+            border-radius: 24px; /* Adjust the value to control the roundness */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#form1:focus{
+        outline: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    
+}
+
+#search-icon {
+    font-size: 45px;
+    padding:15px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    right:0px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    border:1px solid black;
+    border-radius: 2px 24px 24px 2px;
+    
+
+    
+}
+
+#search-container{
+    position: relative;
+}
+
+
+#form1[type="search"]::-webkit-search-cancel-button {
+    position: relative;
+    right: 40px; /* Adjust the position as needed */
+    cursor: pointer;
+    color: black;
+}
+
+
+

@@ -2,15 +2,20 @@ ul{
     list-style-type:none
 }
 #button{
-    float: right;
-    padding: 5px
+    width:100px;
+    height:50px;
+    padding: 10px;
+    color:white;
+    background-color: #198754;
+
+    
 }
 .pdffiles{
     margin-right: 10px;
     color: green;
 }
 .download{
-   margin-right: 800px;
+   margin-right: 50px;
 }
 .pdffiles:hover{
     color:green
@@ -19,10 +24,11 @@ ul{
     color:green
 }
 .delete{
-    width:40px;
-    height:40px;
+    width:20px;
+    height:20px;
     color: red;
-    padding: 4px;
+    padding: 2px;
+    
 }
 .container-fluid{
     margin-top: 50px;
@@ -35,3 +41,65 @@ ul{
     text-overflow: ellipsis;
     
 } */ 
+
+#upload{
+    text-align:center;
+
+}
+
+.author{
+    color:#198754;
+    margin-right: 100px;
+    margin-left:100px;
+}
+
+.year{
+    color:#198754;
+}
+
+.bg-green{
+    background-color:#198754 ;
+    color: white;
+    padding: 10px;
+    border:1px solid green;
+    margin-top:30px;
+    
+}
+.links{
+    color: white;
+}
+
+.con {
+    max-height: 300px; /* Set a maximum height for the container */
+    overflow-y: auto; /* Enable vertical scroll bar when content overflows */
+    border: 1px solid #ccc; /* Add a border for visualization */
+    padding: 10px; /* Add some padding for spacing */
+  }
+
+  .gt{
+
+    background-color: yellow;
+    
+  }
+
+  #count{
+    /* max-width:10px; */
+    width:100px;
+    height:5px; 
+    text-align: left;
+    color: black;
+
+  }
+
+  /* .up{
+    background-color: #198754;
+    
+    padding:10px;
+
+  }
+  fa{
+    border: none;
+  } */
+
+
+  

@@ -1,24 +1,52 @@
 import React from 'react'
 import { FaSearch } from 'react-icons/fa';
+import  { useState, useEffect } from 'react';
 import './Home.css'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import {  FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+
 
 const Home = ({word,handleInputChange,searchClick}) => {
+
+  const images = ['imag1.jpeg', 'image2.jpeg', 'image3.jpeg'];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  };
   return (
     
-    <div className='Container'>
-        
-        <h2 className='title'></h2> 
-        <div className="input-group md-form form-sm form-2 pl-0 ">
-            
-  <input className="form-control my-0 py-2 amber-border" type="text" placeholder="Search" aria-label="Search" value={word} onChange={handleInputChange}  />
-  <div className="input-group-append">
-  <span className="input-group-text amber lighten-4" id="basic-text1" style={{"width:":"100px","height":"50px","backgroundColor":"green"}}><Link onClick={searchClick}  to="/filelist
-  "><FaSearch style={{"color":"white"}}  /></Link></span>
-  </div>
-    </div>  
-</div>
 
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+          <img
+         src={images[currentIndex]}
+         alt={`Image ${currentIndex + 1}`}
+         className="slider-image"
+      />
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="..." alt="Second slide"/>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="..." alt="Third slide"/>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" onClick={prevSlide}>
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" onClick={nextSlide}>
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </a>
+</div>
 
   )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../Signin/Signin.css'
 import { Link, useNavigate } from 'react-router-dom'
-
+import axios from 'axios';
 const Signin = ({user,setUser}) => {
   const navigate=useNavigate()
   const [firstname, setFirstname] = useState('');
@@ -13,19 +13,32 @@ const Signin = ({user,setUser}) => {
   const handleSignUp = (e) => {
     e.preventDefault();
 
+
+     if(password===confirmPassword){
+      axios.post("https://app-qc1f.onrender.com/add",{
+        email:email,
+        firstName:firstname,
+        lastName:lastname,
+        password:password
+      }).then(res=>{
+        alert(res)
+        navigate("/signin")
+      })
+     }
+     
     // Perform validation and other logic here
 
-    // Store sign-up details in a variable or make an API call to save them
-    const users = {
-      firstname:firstname,
-      lastname:lastname,
-      email: email,
-      password: password,
-      confirmPassword: confirmPassword
-    };
-    setUser(users)
-        console.log(users);
-        navigate("/signin")
+    // // Store sign-up details in a variable or make an API call to save them
+    // const users = {
+    //   firstname:firstname,
+    //   lastname:lastname,
+    //   email: email,
+    //   password: password,
+    //   confirmPassword: confirmPassword
+    // };
+    // setUser(users)
+    //     console.log(users);
+    //     navigate("/signin")
   };
   
   return (

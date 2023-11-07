@@ -32,7 +32,7 @@ body {
     width: 100%;
     min-height: 100%;
     padding: 20px;
-    margin-top: 100px;
+    margin-top: 1000px;
   }
   
   #formContent {
@@ -241,5 +241,9 @@ body {
   
   .underlineHover:hover:after{
     width: 100%;
+  }
+
+  #view{
+    margin-top: 100px;
   }
   

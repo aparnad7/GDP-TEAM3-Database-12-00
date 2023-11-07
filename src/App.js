@@ -3,7 +3,10 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './Components/Navbar';
 import Signin from './Components/Signin/Signin';
+import Verify from './Components/Signin/Verify';
+import AdminVerify from './Components/Signin/AdminVerify';
 import Signup from './Components/Signup/Signup';
+import axios from 'axios';
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,6 +20,10 @@ import FileList from './Components/FileList/FileList'
 import AdminSignin from './Components/Signin/AdminSignin'
 import { useState } from 'react';
 import NavbarStatus from './Components/NavbarStatus';
+import AdminAccess from './Components/Signin/AdminAccess';
+import Footer from './Components/Footer';
+import PopUpForm from './Components/FileList/PopUpForm';
+
 
 function App() {
   const[isLogin,setLogins]= useState(true)
@@ -27,25 +34,56 @@ function App() {
   };
   const logout=()=>{
     setLogins(true)
+    setAdmin(false)
   }
 
   const [filelist,setFileList]=useState([])
+  const[isLoading,setLoading]=useState(false)
   
 const searchClick=()=>{
-  setFileList([])
-  let f=[]
-  let w=word.toLowerCase()
-  let x=0;
-  for(x=0;x<files.length;x++){
-    if(files[x].fileText.toLowerCase().includes(w))
-    {
-      f.push(files[x])
-      console.log(filelist)
-      
-    }
+//setFileList([])
+setLoading(true)
+if(word!='')
+axios.get("https://app-qc1f.onrender.com/file/phrases",{
+  params:{
+    phrase:word
   }
-  setFileList(f)
+}).then(res=>{
+
+  
+//console.log(Object.keys(res.data[0].finalwords))
+   
+  setFileList(res.data);
+
+  if(window.location.pathname!="/filelist")
+  {
+        
+  }
+
+  setLoading(false)
+
+  
+  
+})
 }
+
+
+  // setFileList([])
+  // let f=[]
+  // let w=word.toLowerCase()
+  // let x=0;
+  // for(x=0;x<files.length;x++){
+  //   if(files[x].fileText.toLowerCase().includes(w)||files[x].fileName.toLowerCase().includes(w))
+  //   {
+  //     f.push(files[x])
+  //     console.log(filelist)
+      
+  //   }
+  // }
+  //setFileList(f)
+
+
+
   const files= 
     [{
       fileName:'1910 Dec[2].pdf',
@@ -64,10 +102,67 @@ const searchClick=()=>{
       fileText:'Dark means DARK. “They’ve done studies where they shine a laser on the back of someone’s knee, and people pick it up. It’s light. You cannot have your phone in your room. You cannot have a TV in your room. It needs to be black, black as night.” Soft is the solution for bedding. “Today’s modern human needs to sleep on a soft mattress. Ideally, you would be sleeping in a hammock. You should be waking up in the morning feeling amazing without having to loosen up your lower back. Most athletes and people are extension-sensitive because of excessive sitting and extension-biased training (e.g., running, jumping, squatting).'
     },
     {
-      fileName:'Volumes 1-2 1910-1911[1].doc',
-      fileText:'Dark means DARK. “They’ve done studies where they shine a laser on the back of someone’s knee, and people pick it up. It’s light. You cannot have your phone in your room. You cannot have a TV in your room. It needs to be black, black as night.” Soft is the solution for bedding. “Today’s modern human needs to sleep on a soft mattress. Ideally, you would be sleeping in a hammock. You should be waking up in the morning feeling amazing without having to loosen up your lower back. Most athletes and people are extension-sensitive because of excessive sitting and extension-biased training (e.g., running, jumping, squatting).'
+      fileName:'Volumes 1-2 1910-1911[1].pdf',
+      fileText:'The United Colored Democracy of the State of New York has been organized for the coming campaign. They demand a colored regiment in the New York National Guard, and alsocolored policemen and firemen.ark means DARK. “They’ve done studies where they shine a laser on the back of someone’s knee, and people pick it up. It’s light. You cannot have your phone in your room. You cannot have a TV in your room. It needs to be black, black as night.” Soft is the solution for bedding. “Today’s modern human needs to sleep on a soft mattress. Ideally, you would be sleeping in a hammock. You should be waking up in the morning feeling amazing without having to loosen up your lower back. Most athletes and people are extension-sensitive because of excessive sitting and extension-biased training.'
     }
   ]
+
+
+  const deleteClick=(filename)=>{
+    axios.delete("https://app-qc1f.onrender.com/file/delete",{
+      params:{
+        magazineName:filename
+      }
+    }).then(res=>{
+      console.log("hii")
+      searchClick(word)
+    })
+
+  }
+
+  const sortFileName=()=>{
+    setFileList([])
+    if(word!=''){
+axios.get("https://app-qc1f.onrender.com/byfileName",{
+  params:{
+    word:word
+  }
+}).then(res=>{
+  console.log(typeof(res.data),typeof(filelist))
+  setFileList(res.data)
+  
+  
+})
+  }
+}
+const sortAuthorName=()=>{
+  //setFileList([])
+  setLoading(true)
+  
+axios.get("https://app-qc1f.onrender.com/file/get").then(res=>{
+console.log(typeof(res.data),typeof(filelist))
+setFileList(res.data)
+setLoading(false)
+
+})
+
+}
+
+const sortYear=()=>{
+  setLoading(true)
+
+axios.get("https://app-qc1f.onrender.com/file/sortYear",{
+params:{
+  phrase:word
+}
+}).then(res=>{
+console.log(typeof(res.data),typeof(filelist))
+setFileList(res.data)
+setLoading(false)
+
+})
+
+}
 
   const[user,setUser]=useState([])
   const[admind,setAdmind]=useState([
@@ -80,16 +175,21 @@ const searchClick=()=>{
     <div>
       <Router>
         <NavbarStatus>
-      <Navbar isLogin={isLogin} isAdmin={isAdmin} word={word} handleInputChange={handleInputChange} searchClick={searchClick} logout={logout}  />
+      <Navbar isLogin={isLogin} isAdmin={isAdmin} word={word} handleInputChange={handleInputChange} searchClick={searchClick} logout={logout} sortFileName={sortFileName} sortAuthorName={sortAuthorName} sortYear={sortYear} />
       </NavbarStatus>
       <Routes>
       <Route exact path="/" element={<Home word={word} handleInputChange={handleInputChange} searchClick={searchClick} />} />
-      <Route exact path="/signin" element={<Signin user={user} isLogin={isLogin} isAdmin={isAdmin} setLogins={setLogins} />} />
+      <Route exact path="/adminaccess" element={<AdminAccess user={user} isLogin={isLogin} isAdmin={isAdmin} setLogins={setLogins} admind={admind} />} />
+      <Route exact path="/signin" element={<Signin user={user} isLogin={isLogin} isAdmin={isAdmin} setLogins={setLogins} sortAuthorName={sortAuthorName} />} />
       <Route exact path="/signup" element={<Signup user={user} setUser={setUser}/>} /> 
-      <Route exact path="/file" element={<File />} />
-      <Route exact path="/filelist" element={<FileList isAdmin={isAdmin} word={word} filelist={filelist}  />} />
-      <Route exact path="/adminlogin" element={<AdminSignin admind={admind} isLogin={isLogin} isAdmin={isAdmin}  setAdmin={setAdmin} setLogins={setLogins}/>} />
+      <Route exact path="/verify" element={<Verify user={user} setUser={setUser} setLogins={setLogins}/>} />
+      <Route exact path="/adminverify" element={<AdminVerify user={user} setUser={setUser} setAdmin={setAdmin} setLogins={setLogins}/>} />
+      <Route exact path="/file" element={<File />} /> 
+      <Route exact path="/popupform" element={<PopUpForm setAdmin={setAdmin} setLogins={setLogins} />} />   
+      <Route exact path="/filelist" element={<FileList isAdmin={isAdmin} word={word} filelist={filelist} isLoading={isLoading} deleteClick={(filename) => deleteClick(filename)}  />}/>
+      <Route exact path="/adminlogin" element={<AdminSignin admind={admind} isLogin={isLogin} isAdmin={isAdmin}  setAdmin={setAdmin} setLogins={setLogins} sortAuthorName={sortAuthorName}/>} />
       </Routes>
+      {/* <Footer  /> */}
       </Router>
       
     </div>

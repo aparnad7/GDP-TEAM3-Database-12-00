@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+
 import  FileViewer  from 'react-file-viewer';
 
 const File = () => {

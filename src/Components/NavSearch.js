@@ -6,7 +6,7 @@ const NavSearch = ({children}) => {
     const location=useLocation()
     useEffect(()=>{
         console.log(location.pathname)
-        if((location.pathname === '/')||(location.pathname === '/signin')||(location.pathname === '/signup')||((location.pathname === '/adminlogin')))
+        if((location.pathname === '/')||(location.pathname === '/signin')||(location.pathname === '/signup')||((location.pathname === '/adminlogin'))||(location.pathname==='/adminaccess'))
         {
             setStatus(false)
         }

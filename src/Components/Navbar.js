@@ -4,29 +4,34 @@ import { FaSearch } from 'react-icons/fa';
 import NavSearch from './NavSearch';
 import { FaPlus } from 'react-icons/fa';
 import Navfilestatus from './Navfilestatus';
-
-const Navbar = ({isLogin,onHandleClick,isAdmin,adminClick,word,handleInputChange,searchClick,logout}) => {
+import Dropdown from 'react-bootstrap/Dropdown';
+import './Navbar.css'
+const Navbar = ({isLogin,onHandleClick,isAdmin,adminClick,word,handleInputChange,searchClick,logout,sortFileName,sortAuthorName,sortYear}) => {
     
   return (
     <div>
 
       <nav className="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
-  <Link className="navbar-brand" to="/" >Database</Link>
+  <Link className="navbar-brand" to="/" >HistotyOf<b style={{"color":"black"}}>Black</b>People</Link>
   <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
+      <span className="navbar-toggler-icon" ></span>
     </button>
-    <NavSearch>
-    <div className="input-group ps-5" style={{"display":"flex"}}>
-          <div id="navbar-search-autocomplete" className="form-outline">
-            <input type="search" id="form1" className="form-control" placeholder='Search' value={word} onChange={handleInputChange} />
+    {/* <NavSearch> */}
+    <div className="input-group ps-5" style={{"display":"flex"}} id="search-ontainer">
+          <div  className="form-outline" id="search-container" style={{"display":"flex"}}>
+            <input type="search" id="form1" className="form-control" placeholder='Search' value={word} onChange={handleInputChange} /> 
+            <Link to='/filelist'>
+            <FaSearch className='fas fa-search'style={{"color":"black"}} id="search-icon" onClick={searchClick} />
+            </Link>
+            
+            
+          
           </div>
-          <button type="button" className="btn btn-dark">
-            <FaSearch className='fas fa-search' onClick={searchClick} />
-          </button>
+          
         </div>
 
         
-        </NavSearch>
+        {/* </NavSearch> */}
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
  {isLogin?
@@ -41,62 +46,47 @@ const Navbar = ({isLogin,onHandleClick,isAdmin,adminClick,word,handleInputChange
         <Link className='nav-link' to='/signup'>SignUp</Link>
     </li>
     <li class="nav-item px-20">
-     <Navfilestatus>  <a className="nav-link" href="#">AllFiles</a></Navfilestatus> 
+      <Link to="filelist">
+      <a className="nav-link" onClick={sortAuthorName}>AllFiles</a> 
+      </Link>
+      
       </li>  
-      <li className="nav-item">
-       <Navfilestatus> <a className="nav-link ml-4" href="#">PDFFile</a></Navfilestatus>
-      </li>
-      <li className="nav-item">
-       <Navfilestatus> <a className="nav-link" href="#">TextFile</a></Navfilestatus>
-      </li>
-    
-<li className="nav-item dropdown">
-  <Navfilestatus>
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          SortBy
-        </a></Navfilestatus>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-    <a className="dropdown-item" href="#">Action</a>
-    <a className="dropdown-item" href="#">Another action</a>
-    <a className="dropdown-item" href="#">Something else here</a>
-  </div>
-</li>
-
-
-
   </ul>
 :
 
 
 <ul className='navbar-nav ms-auto px-5'>
     {isAdmin &&
-<li className='nav-item' style={{"marginRight":"230px","fontSize":"1.2em"}}>
-        <Link className='nav-link' to="signin">Admin <span><FaPlus /></span></Link>
+<li className='nav-item' style={{"marginRight":"20px","fontSize":"1.0em","display":"inline"}}>
+        <Link className='nav-link' to="/adminaccess">Admin <span><FaPlus /></span></Link>
     </li>
 }
 
-<li class="nav-item px-20">
-     <Navfilestatus>  <a className="nav-link" href="#">AllFiles</a></Navfilestatus> 
-      </li>  
-      <li className="nav-item">
-       <Navfilestatus> <a className="nav-link ml-4" href="#">PDFFile</a></Navfilestatus>
-      </li>
-      <li className="nav-item">
-       <Navfilestatus> <a className="nav-link" href="#">TextFile</a></Navfilestatus>
-      </li>
-    
-<li className="nav-item dropdown">
-  <Navfilestatus>
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          SortBy
-        </a></Navfilestatus>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-    <a className="dropdown-item" href="#">Action</a>
-    <a className="dropdown-item" href="#">Another action</a>
-    <a className="dropdown-item" href="#">Something else here</a>
-  </div>
-   
+ 
+      
+    <Navfilestatus>
+      <li class="nav-item dropdown">
+      <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        SortBy
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={sortYear}>Year</Dropdown.Item>
+        <Dropdown.Item onClick={sortAuthorName}>Author Name</Dropdown.Item>
+        <Dropdown.Item onClick={sortFileName}>File Name</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+
 </li>
+</Navfilestatus>
+ 
+<li class="nav-item px-20">
+      <Link to="filelist">
+      <a className="nav-link" onClick={sortAuthorName}>AllFiles</a> 
+      </Link>
+      
+      </li> 
     <li className='nav-item'>
         <Link onClick={logout} className='nav-link' to="signin">Logout</Link>
     </li>
