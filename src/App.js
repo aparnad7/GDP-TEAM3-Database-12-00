@@ -44,7 +44,7 @@ const searchClick=()=>{
 //setFileList([])
 setLoading(true)
 if(word!='')
-axios.get("https://app-qc1f.onrender.com/file/phrases",{
+axios.get("https://app-miok.onrender.com/file/phrases",{
   params:{
     phrase:word
   }
@@ -109,7 +109,7 @@ axios.get("https://app-qc1f.onrender.com/file/phrases",{
 
 
   const deleteClick=(filename)=>{
-    axios.delete("https://app-qc1f.onrender.com/file/delete",{
+    axios.delete("https://app-miok.onrender.com/file/delete",{
       params:{
         magazineName:filename
       }
@@ -123,7 +123,7 @@ axios.get("https://app-qc1f.onrender.com/file/phrases",{
   const sortFileName=()=>{
     setFileList([])
     if(word!=''){
-axios.get("https://app-qc1f.onrender.com/byfileName",{
+axios.get("https://app-miok.onrender.com/byfileName",{
   params:{
     word:word
   }
@@ -139,7 +139,7 @@ const sortAuthorName=()=>{
   //setFileList([])
   setLoading(true)
   
-axios.get("https://app-qc1f.onrender.com/file/get").then(res=>{
+axios.get("https://app-miok.onrender.com/file/get").then(res=>{
 console.log(typeof(res.data),typeof(filelist))
 setFileList(res.data)
 setLoading(false)
@@ -151,7 +151,7 @@ setLoading(false)
 const sortYear=()=>{
   setLoading(true)
 
-axios.get("https://app-qc1f.onrender.com/file/sortYear",{
+axios.get("https://app-miok.onrender.com/file/sortYear",{
 params:{
   phrase:word
 }

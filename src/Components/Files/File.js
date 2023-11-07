@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import  FileViewer  from 'react-file-viewer';
+
 
 const File = () => {
     const docs = '1910 Dec[2].pdf'
@@ -13,9 +13,9 @@ const File = () => {
   return (
     <div>
         <h1>Documents</h1>
-        <FileViewer fileType={''} filePath={docs}
+        {/* <FileViewer fileType={''} filePath={docs}
         onError={(e) => console.log('Error:', e)}
-        />
+        /> */}
     </div>
   )
 }

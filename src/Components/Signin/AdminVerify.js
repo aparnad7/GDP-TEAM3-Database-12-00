@@ -9,7 +9,7 @@ const AdminVerify = ({setLogins,setAdmin}) => {
     const navigate=useNavigate();
     const onSubmitHandler=(e)=>{
           e.preventDefault();
-          axios.get("https://app-qc1f.onrender.com/",{
+          axios.get("https://app-miok.onrender.com/",{
            params:{
             otp:otp
            } 

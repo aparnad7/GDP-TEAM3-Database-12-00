@@ -15,7 +15,7 @@ const Signin = ({user,setUser}) => {
 
 
      if(password===confirmPassword){
-      axios.post("https://app-qc1f.onrender.com/add",{
+      axios.post("https://app-miok.onrender.com/add",{
         email:email,
         firstName:firstname,
         lastName:lastname,
