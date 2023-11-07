@@ -9,7 +9,7 @@ const AdminSignin = ({admind,name,onHandleClick,adminClick,setAdmin,setLogins,so
      const navigate=useNavigate();
     const onSubmitHandler=(e)=>{
           e.preventDefault();
-           axios.get("https://app-miok.onrender.com/get",{
+           axios.get("http://localhost:8080/get",{
             params:{
               email:email,
               password:password
