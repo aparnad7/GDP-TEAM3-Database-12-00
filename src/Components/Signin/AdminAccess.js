@@ -35,7 +35,7 @@ const AdminAccess = ({user,isLogin,setLogins,admind}) => {
   }
 
   const delAdmin=(email)=>{
-    axios.delete(`https://app-miok.onrender.com/${email}`)
+    axios.delete(`https://app-miok.onrender.com/deleteadmin/${email}`)
     .then(res=>{
       alert("Disabled access successfully")
       loadUsers()
