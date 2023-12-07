@@ -18,7 +18,7 @@ function PopUpForm({ onClose, onSubmit,setAdmin,setLogins }) {
     formData.append('magazineName',magazineName);
     formData.append('textfile', textfile);
 
-    axios.post("https://app-miok.onrender.com/file/uploadfile",formData,{
+    axios.post("http://full-stack-backend-server-qa.eba-8sbtxdmm.us-east-1.elasticbeanstalk.com/file/uploadfile",formData,{
         headers: {
           'content-type': 'multipart/form-data' // Set the content type to form-data
         },

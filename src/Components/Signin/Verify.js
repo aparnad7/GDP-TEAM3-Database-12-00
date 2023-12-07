@@ -9,7 +9,7 @@ const Verify = ({setLogins}) => {
     const navigate=useNavigate();
     const onSubmitHandler=(e)=>{
           e.preventDefault();
-          axios.get("https://app-miok.onrender.com/user/verify",{
+          axios.get("http://full-stack-backend-server-qa.eba-8sbtxdmm.us-east-1.elasticbeanstalk.com/user/verify",{
            params:{
             otp:otp
            } 

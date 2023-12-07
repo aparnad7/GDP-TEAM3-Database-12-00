@@ -44,7 +44,7 @@ const searchClick=()=>{
 //setFileList([])
 setLoading(true)
 if(word!='')
-axios.get("https://app-miok.onrender.com/file/phrases",{
+axios.get("http://full-stack-backend-server-qa.eba-8sbtxdmm.us-east-1.elasticbeanstalk.com/file/phrases",{
   params:{
     phrase:word
   }
@@ -109,7 +109,7 @@ axios.get("https://app-miok.onrender.com/file/phrases",{
 
 
   const deleteClick=(filename)=>{
-    axios.delete("https://app-miok.onrender.com/file/delete",{
+    axios.delete("http://full-stack-backend-server-qa.eba-8sbtxdmm.us-east-1.elasticbeanstalk.com/file/delete",{
       params:{
         magazineName:filename
       }
@@ -121,25 +121,44 @@ axios.get("https://app-miok.onrender.com/file/phrases",{
   }
 
   const sortFileName=()=>{
-    setFileList([])
-    if(word!=''){
-axios.get("https://app-miok.onrender.com/byfileName",{
+    setLoading(true)
+
+    
+axios.get("http://full-stack-backend-server-qa.eba-8sbtxdmm.us-east-1.elasticbeanstalk.com/file/byMagazine",{
   params:{
-    word:word
+    phrase:word
   }
 }).then(res=>{
   console.log(typeof(res.data),typeof(filelist))
   setFileList(res.data)
-  
+  setLoading(false)
   
 })
-  }
+  
 }
+const sortVolume=()=>{
+  setLoading(true)
+
+  
+axios.get("http://full-stack-backend-server-qa.eba-8sbtxdmm.us-east-1.elasticbeanstalk.com/file/byVolume",{
+params:{
+  phrase:word
+}
+}).then(res=>{
+console.log(typeof(res.data),typeof(filelist))
+setFileList(res.data)
+setLoading(false)
+
+})
+
+}
+
+
 const sortAuthorName=()=>{
   //setFileList([])
   setLoading(true)
   
-axios.get("https://app-miok.onrender.com/file/get").then(res=>{
+axios.get("http://full-stack-backend-server-qa.eba-8sbtxdmm.us-east-1.elasticbeanstalk.com/file/get").then(res=>{
 console.log(typeof(res.data),typeof(filelist))
 setFileList(res.data)
 setLoading(false)
@@ -151,7 +170,7 @@ setLoading(false)
 const sortYear=()=>{
   setLoading(true)
 
-axios.get("https://app-miok.onrender.com/file/sortYear",{
+axios.get("http://full-stack-backend-server-qa.eba-8sbtxdmm.us-east-1.elasticbeanstalk.com/file/sortYear",{
 params:{
   phrase:word
 }
@@ -175,7 +194,7 @@ setLoading(false)
     <div>
       <Router>
         <NavbarStatus>
-      <Navbar isLogin={isLogin} isAdmin={isAdmin} word={word} handleInputChange={handleInputChange} searchClick={searchClick} logout={logout} sortFileName={sortFileName} sortAuthorName={sortAuthorName} sortYear={sortYear} />
+      <Navbar isLogin={isLogin} isAdmin={isAdmin} word={word} handleInputChange={handleInputChange} searchClick={searchClick} logout={logout} sortFileName={sortFileName} sortAuthorName={sortAuthorName} sortYear={sortYear}sortVolume={sortVolume} />
       </NavbarStatus>
       <Routes>
       <Route exact path="/" element={<Home word={word} handleInputChange={handleInputChange} searchClick={searchClick} />} />

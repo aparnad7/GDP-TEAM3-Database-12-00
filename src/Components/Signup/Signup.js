@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../Signin/Signin.css'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { FaTrash, FaDownload, FaPlus, FaEye, FaEyeSlash } from 'react-icons/fa';
 const Signin = ({user,setUser}) => {
   const navigate=useNavigate()
   const [firstname, setFirstname] = useState('');
@@ -9,13 +10,13 @@ const Signin = ({user,setUser}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  const [showPassword, setShowPassword] = useState(false);
   const handleSignUp = (e) => {
     e.preventDefault();
 
 
      if(password===confirmPassword){
-      axios.post("https://app-miok.onrender.com/add",{
+      axios.post("http://full-stack-backend-server-qa.eba-8sbtxdmm.us-east-1.elasticbeanstalk.com/user/add",{
         email:email,
         firstName:firstname,
         lastName:lastname,
@@ -25,6 +26,9 @@ const Signin = ({user,setUser}) => {
         navigate("/signin")
       })
      }
+     const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword);
+    }
      
     // Perform validation and other logic here
 
@@ -40,6 +44,9 @@ const Signin = ({user,setUser}) => {
     //     console.log(users);
     //     navigate("/signin")
   };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  }
   
   return (
     
@@ -54,8 +61,18 @@ const Signin = ({user,setUser}) => {
       <input type="text" id="login" value={firstname} className="fadeIn second" name="login" placeholder="Enter your First Name" onChange={(e) => setFirstname(e.target.value)} />
       <input type="text" id="login" value={lastname} className="fadeIn second" name="login" placeholder="Enter your Last Name" onChange={(e) => setLastName(e.target.value)} />
       <input type="text" id="login" value={email} className="fadeIn second" name="login" placeholder="Enter your Email" onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" id="password" value={password} className="fadeIn third" name="login" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} />
-      <input type="password" id="password" value={confirmPassword}className="fadeIn third" name="login" placeholder="Confirm your password" onChange={(e) => setConfirmPassword(e.target.value)} />
+      <div className="password-container">
+      <input type={showPassword ? "text" : "password"} id="password" value={password} className="fadeIn third" name="login" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} />
+      <span className="toggle-password" onClick={togglePasswordVisibility}>
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </span>
+            </div>
+            <div className="password-container">    
+      <input type={showPassword ? "text" : "password"} id="password" value={confirmPassword}className="fadeIn third" name="login" placeholder="Confirm your password" onChange={(e) => setConfirmPassword(e.target.value)} />
+      <span className="toggle-password" onClick={togglePasswordVisibility}>
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </span>
+            </div>
       <input type="submit" className="fadeIn fourth" value="SignUp" />
     </form>
 

@@ -6,7 +6,7 @@ import { FaPlus } from 'react-icons/fa';
 import Navfilestatus from './Navfilestatus';
 import Dropdown from 'react-bootstrap/Dropdown';
 import './Navbar.css'
-const Navbar = ({isLogin,onHandleClick,isAdmin,adminClick,word,handleInputChange,searchClick,logout,sortFileName,sortAuthorName,sortYear}) => {
+const Navbar = ({isLogin,onHandleClick,isAdmin,adminClick,word,handleInputChange,searchClick,logout,sortFileName,sortAuthorName,sortYear,sortVolume}) => {
     
   return (
     <div>
@@ -51,7 +51,29 @@ const Navbar = ({isLogin,onHandleClick,isAdmin,adminClick,word,handleInputChange
       </Link>
       
       </li>  
+
+      <li>
+      <Navfilestatus>
+      <li class="nav-item dropdown">
+      <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        SortBy
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={sortYear}>Year</Dropdown.Item>
+        <Dropdown.Item onClick={sortVolume}>Volume</Dropdown.Item>
+        <Dropdown.Item onClick={sortFileName}>Magazine Name</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+
+</li>
+</Navfilestatus>
+      </li>
   </ul>
+
+  
+  
 :
 
 
@@ -73,8 +95,8 @@ const Navbar = ({isLogin,onHandleClick,isAdmin,adminClick,word,handleInputChange
 
       <Dropdown.Menu>
         <Dropdown.Item onClick={sortYear}>Year</Dropdown.Item>
-        <Dropdown.Item onClick={sortAuthorName}>Author Name</Dropdown.Item>
-        <Dropdown.Item onClick={sortFileName}>File Name</Dropdown.Item>
+        <Dropdown.Item onClick={sortVolume}>Volume</Dropdown.Item>
+        <Dropdown.Item onClick={sortFileName}>Magazine Name</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
 

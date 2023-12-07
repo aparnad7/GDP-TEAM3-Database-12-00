@@ -13,14 +13,14 @@ const AdminAccess = ({user,isLogin,setLogins,admind}) => {
   }, [users]);
 
   const loadUsers = async () => {
-    const result = await axios.get("https://app-qc1f.onrender.com/allusers");
+    const result = await axios.get("http://full-stack-backend-server-qa.eba-8sbtxdmm.us-east-1.elasticbeanstalk.com/allusers");
     setUsers(result.data);
     console.log(result.data)
   };
 
   const addAdmin=(em)=>{
     console.log(em)
-     axios.get("https://app-qc1f.onrender.com/add",{
+     axios.get("http://full-stack-backend-server-qa.eba-8sbtxdmm.us-east-1.elasticbeanstalk.com/add",{
       params:{
         email:em
         
@@ -35,7 +35,7 @@ const AdminAccess = ({user,isLogin,setLogins,admind}) => {
   }
 
   const delAdmin=(email)=>{
-    axios.delete(`https://app-miok.onrender.com/deleteadmin/${email}`)
+    axios.delete(`http://full-stack-backend-server-qa.eba-8sbtxdmm.us-east-1.elasticbeanstalk.com/deleteadmin/${email}`)
     .then(res=>{
       alert("Disabled access successfully")
       loadUsers()
